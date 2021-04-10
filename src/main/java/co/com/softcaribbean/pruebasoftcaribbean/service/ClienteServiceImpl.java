@@ -1,5 +1,6 @@
 package co.com.softcaribbean.pruebasoftcaribbean.service;
 
+import co.com.softcaribbean.pruebasoftcaribbean.model.Cliente;
 import co.com.softcaribbean.pruebasoftcaribbean.model.response.ClienteResponse;
 import co.com.softcaribbean.pruebasoftcaribbean.repository.ClienteRepository;
 import lombok.AccessLevel;
@@ -25,5 +26,10 @@ public class ClienteServiceImpl implements ClienteService{
         return clientes.stream().map(cliente -> {
             return new ClienteResponse(cliente);
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void crearCliente(Cliente cliente) {
+        clienteRepository.save(cliente);
     }
 }

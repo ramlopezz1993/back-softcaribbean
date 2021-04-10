@@ -1,0 +1,68 @@
+package co.com.softcaribbean.pruebasoftcaribbean.model;
+
+import co.com.softcaribbean.pruebasoftcaribbean.service.ClienteService;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Slf4j
+public class Arbol {
+    //iniciamos desde la raiz
+    public Nodo raiz;
+    public Arbol(){
+        this.raiz=null;
+    }
+
+    public void insertar(Cliente cliente) {
+        var nodo = new Nodo(cliente);
+        nodo.cliente = cliente;
+        if(raiz==null){
+            // no tenemos raiz entonces la colocamos
+            raiz=nodo;
+        } else {
+            //si tenemos raiz
+            //creamos un nodo aux para saber donde colocarlo
+            var nodoAux = raiz;
+            while(nodoAux!=null){
+                nodo.padre = nodoAux;
+                if (nodo.indice >= nodoAux.indice) {
+                    nodoAux=nodoAux.derecha;
+                } else {
+                    nodoAux=nodoAux.izquierda;
+                }
+            }
+            if(nodo.indice<nodo.padre.indice) {
+                nodo.padre.izquierda=nodo;
+            } else {
+                nodo.padre.derecha=nodo;
+            }
+        }
+    }
+
+    public void recorrerArbol(Nodo nodo){
+        if(nodo!=null) {
+            recorrerArbol(nodo.izquierda);
+            log.info("indice "+nodo.indice+ " izquierda "+nodo.izquierda + " derecha "+nodo.derecha);
+            recorrerArbol(nodo.derecha);
+        }
+    }
+
+    //clase privada para crear los nodos u hojas del arbol
+    @FieldDefaults(level = AccessLevel.PRIVATE)
+    public class Nodo {
+        Nodo padre;
+        Nodo izquierda;
+        Nodo derecha;
+        int indice;
+        Cliente cliente;
+
+        public Nodo(Cliente cliente) {
+            this.indice=cliente.getCus_nmcliente();
+            this.padre=null;
+            this.derecha=null;
+            this.izquierda=null;
+            this.cliente=null;
+        }
+    }
+}
