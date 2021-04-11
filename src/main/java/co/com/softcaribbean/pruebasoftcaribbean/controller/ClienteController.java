@@ -27,17 +27,24 @@ public class ClienteController {
        return new ResponseEntity<>(clienteService.obtenerTodosLosClientes(), HttpStatus.OK);
     }
 
-    @PutMapping("/clientes/{cus_nmcliente}")
-    public ResponseEntity<Void> actualizarArbolYBaseDeDatos(@PathVariable("cus_nmcliente") @NotBlank Integer cus_nmcliente,
+    @GetMapping("/clientes/{cusNmCliente}")
+    public ResponseEntity<ClienteResponse> obtenerClientePorCedula(@PathVariable("cusNmCliente") @NotBlank Integer cusNmCliente) throws ObjetoNoEncontradoException {
+        return new ResponseEntity<>(clienteService.obtenerClientePorCedula(cusNmCliente), HttpStatus.OK);
+    }
+
+    @PutMapping("/clientes/{cusNmCliente}")
+    public ResponseEntity<Void> actualizarArbolYBaseDeDatos(@PathVariable("cusNmCliente") @NotBlank Integer cusNmCliente,
                                                             @Valid @RequestBody EditarClienteRequest editarClienteRequest) throws ObjetoNoEncontradoException {
-        clienteService.actualizarArbolYBaseDeDatos(cus_nmcliente, editarClienteRequest);
+        clienteService.actualizarArbolYBaseDeDatos(cusNmCliente, editarClienteRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/clientes")
-    public ResponseEntity<Void> crearActivoFijo(@Valid @RequestBody CrearClienteRequest crearClienteRequest)
+    public ResponseEntity<Void> crearCliente(@Valid @RequestBody CrearClienteRequest crearClienteRequest)
             throws AplicacionException, ParseException {
         clienteService.crearCliente(crearClienteRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
 }

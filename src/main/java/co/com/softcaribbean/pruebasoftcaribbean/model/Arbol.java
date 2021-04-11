@@ -46,7 +46,7 @@ public class Arbol {
     public void recorrerArbol(Nodo nodo){
         if(nodo!=null) {
             recorrerArbol(nodo.izquierda);
-            log.info("indice "+nodo.cliente.getCusCdtelefono()+" izquierda "+nodo.izquierda + " derecha "+nodo.derecha);
+            log.info("indice "+nodo.indice);
             recorrerArbol(nodo.derecha);
         }
     }
@@ -60,6 +60,21 @@ public class Arbol {
             }
             actualizarNodo(cliente,nodo.derecha);
         }
+    }
+
+    public Cliente obtenerClientePorCedula (Integer cusNmCliente, Nodo nodo) {
+        var nodoAux = nodo;
+        while (nodoAux.indice != cusNmCliente) {
+            if(cusNmCliente<nodoAux.indice) {
+                nodoAux=nodoAux.izquierda;
+            } else {
+                nodoAux=nodoAux.derecha;
+            }
+            if(nodoAux==null) {
+                return null;
+            }
+        }
+        return nodoAux.cliente;
     }
 
     //clase privada para crear los nodos u hojas del arbol

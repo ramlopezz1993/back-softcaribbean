@@ -12,5 +12,6 @@ import java.util.List;
 public interface ClienteService {
     List<ClienteResponse> obtenerTodosLosClientes();
     void crearCliente(CrearClienteRequest crearClienteRequest) throws AplicacionException, ParseException;
-    void actualizarArbolYBaseDeDatos(Integer cus_nmcliente, EditarClienteRequest editarClienteRequest) throws ObjetoNoEncontradoException;
+    void actualizarArbolYBaseDeDatos(Integer cusNmCliente, EditarClienteRequest editarClienteRequest) throws ObjetoNoEncontradoException;
+    ClienteResponse obtenerClientePorCedula(Integer cusNmCliente) throws ObjetoNoEncontradoException;
 }
