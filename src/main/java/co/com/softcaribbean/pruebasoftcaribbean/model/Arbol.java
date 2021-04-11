@@ -1,12 +1,15 @@
 package co.com.softcaribbean.pruebasoftcaribbean.model;
 
-import co.com.softcaribbean.pruebasoftcaribbean.service.ClienteService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
 @Slf4j
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class Arbol {
     //iniciamos desde la raiz
     public Nodo raiz;
