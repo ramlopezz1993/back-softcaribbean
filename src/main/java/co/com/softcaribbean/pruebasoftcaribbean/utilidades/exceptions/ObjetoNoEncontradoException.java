@@ -5,28 +5,23 @@ package co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions;
  * Excepción para identificar que se realizaba la búsqueda de un objeto y no fue encontrado.
  * </p>
  */
-public class ObjetoNoEncontradoException extends Exception {
+public class ObjetoNoEncontradoException extends AplicacionIOException {
 
   private static final long serialVersionUID = -2346187414948852798L;
 
   public ObjetoNoEncontradoException() {
+    super();
   }
 
-  public ObjetoNoEncontradoException(String mensaje) {
-    super(mensaje);
+  public ObjetoNoEncontradoException(String message) {
+    super(message);
   }
 
-  public ObjetoNoEncontradoException(Throwable causa) {
-    super(causa);
+  public ObjetoNoEncontradoException(String message, Throwable cause) {
+    super(message, cause);
   }
 
-  public ObjetoNoEncontradoException(String mensaje, Throwable causa) {
-    super(mensaje, causa);
+  public ObjetoNoEncontradoException(Throwable cause) {
+    super(cause);
   }
-
-  public ObjetoNoEncontradoException(String mensaje, Throwable causa, boolean habilitarSupresion,
-                                     boolean escribirTrazaError) {
-    super(mensaje, causa, habilitarSupresion, escribirTrazaError);
-  }
-
 }

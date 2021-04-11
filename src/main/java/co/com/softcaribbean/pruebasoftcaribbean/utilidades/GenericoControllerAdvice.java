@@ -1,5 +1,6 @@
 package co.com.softcaribbean.pruebasoftcaribbean.utilidades;
 
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.FormatoInvalidoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoRuntimeException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoRepetidoException;
@@ -37,6 +38,13 @@ public class GenericoControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ObjetoRepetidoException.class)
     @ResponseBody
     public PruebaErrorBean manejoErrorGenerico(ObjetoRepetidoException e) {
+        return AplicacionUtility.generarObjetoRespuestaError(HttpStatus.BAD_REQUEST, e, e.getMessage(), false);
+    }
+
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(FormatoInvalidoException.class)
+    @ResponseBody
+    public PruebaErrorBean manejoErrorGenerico(FormatoInvalidoException e) {
         return AplicacionUtility.generarObjetoRespuestaError(HttpStatus.BAD_REQUEST, e, e.getMessage(), false);
     }
 }

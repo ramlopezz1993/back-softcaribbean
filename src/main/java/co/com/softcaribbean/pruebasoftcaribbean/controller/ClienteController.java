@@ -4,6 +4,7 @@ import co.com.softcaribbean.pruebasoftcaribbean.model.request.CrearClienteReques
 import co.com.softcaribbean.pruebasoftcaribbean.model.request.EditarClienteRequest;
 import co.com.softcaribbean.pruebasoftcaribbean.model.response.ClienteResponse;
 import co.com.softcaribbean.pruebasoftcaribbean.service.ClienteService;
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.FormatoInvalidoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoRepetidoException;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -41,7 +41,7 @@ public class ClienteController {
 
     @PostMapping("/clientes")
     public ResponseEntity<Void> crearCliente(@Valid @RequestBody CrearClienteRequest crearClienteRequest)
-            throws ParseException, ObjetoRepetidoException {
+            throws ObjetoRepetidoException, FormatoInvalidoException {
         clienteService.crearCliente(crearClienteRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

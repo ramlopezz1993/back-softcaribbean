@@ -1,6 +1,6 @@
 package co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions;
 
-public class ObjetoRepetidoException extends Exception {
+public class ObjetoRepetidoException extends AplicacionIOException {
     private static final long serialVersionUID = -8511113826986866537L;
 
     public ObjetoRepetidoException() {
@@ -17,9 +17,5 @@ public class ObjetoRepetidoException extends Exception {
 
     public ObjetoRepetidoException(Throwable cause) {
         super(cause);
-    }
-
-    protected ObjetoRepetidoException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 }

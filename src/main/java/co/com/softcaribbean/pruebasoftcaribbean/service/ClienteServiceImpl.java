@@ -6,6 +6,8 @@ import co.com.softcaribbean.pruebasoftcaribbean.model.request.CrearClienteReques
 import co.com.softcaribbean.pruebasoftcaribbean.model.request.EditarClienteRequest;
 import co.com.softcaribbean.pruebasoftcaribbean.model.response.ClienteResponse;
 import co.com.softcaribbean.pruebasoftcaribbean.repository.ClienteRepository;
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.common.AplicacionUtility;
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.FormatoInvalidoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoRepetidoException;
 import lombok.AccessLevel;
@@ -15,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public void crearCliente(CrearClienteRequest crearClienteRequest) throws ParseException, ObjetoRepetidoException {
+    public void crearCliente(CrearClienteRequest crearClienteRequest) throws ObjetoRepetidoException, FormatoInvalidoException {
         var optCliente = clienteRepository.findByCusNmcliente(crearClienteRequest.getCusNmcliente());
         if (optCliente.isPresent()) {
             throw new ObjetoRepetidoException("La cédula ya se encuentra registrada");
@@ -51,7 +52,7 @@ public class ClienteServiceImpl implements ClienteService {
             throws ObjetoNoEncontradoException {
         var cliente = clienteRepository.findByCusNmcliente(cusNmCliente)
                 .orElseThrow(() -> new ObjetoNoEncontradoException("El cliente con ese número de cédula no se encuentra en BD"));
-        BeanUtils.copyProperties(editarClienteRequest,cliente);
+        BeanUtils.copyProperties(editarClienteRequest,cliente, AplicacionUtility.obtenerListapropiedadesNulas(editarClienteRequest));
         arbol.actualizarNodo(cliente,arbol.raiz);
         arbol.recorrerArbol(arbol.raiz);
         clienteRepository.save(cliente);
