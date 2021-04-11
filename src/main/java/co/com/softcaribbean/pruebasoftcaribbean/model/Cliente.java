@@ -1,9 +1,9 @@
 package co.com.softcaribbean.pruebasoftcaribbean.model;
 
 import co.com.softcaribbean.pruebasoftcaribbean.model.request.CrearClienteRequest;
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.common.AplicacionUtility;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroConverter;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroEnum;
-import co.com.softcaribbean.pruebasoftcaribbean.utilidades.common.AplicacionUtility;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.FormatoInvalidoException;
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -30,7 +30,6 @@ public class ClienteResponse implements Serializable {
     String cusDscargo;
     Integer cusNmciudad;
     String cusDsciudad;
-    Date cusFenacimiento;
     String cusGenero;
     Integer cusNmcomunidad;
     String cusDscomunidad;
@@ -42,6 +41,8 @@ public class ClienteResponse implements Serializable {
     String cusHobbies;
     Date cusFebaja;
     Date cusFeregistro;
+
+    public ClienteResponse () {}
 
     public ClienteResponse (Cliente cliente) {
         BeanUtils.copyProperties(cliente,this);

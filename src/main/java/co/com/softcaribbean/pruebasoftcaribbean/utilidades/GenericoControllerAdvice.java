@@ -1,5 +1,6 @@
 package co.com.softcaribbean.pruebasoftcaribbean.utilidades;
 
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.common.AplicacionUtility;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.FormatoInvalidoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoRuntimeException;
