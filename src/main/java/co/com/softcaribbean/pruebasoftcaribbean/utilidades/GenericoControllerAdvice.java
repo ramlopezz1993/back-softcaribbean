@@ -2,6 +2,7 @@ package co.com.softcaribbean.pruebasoftcaribbean.utilidades;
 
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoRuntimeException;
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoRepetidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,5 +31,12 @@ public class GenericoControllerAdvice extends ResponseEntityExceptionHandler {
     @ResponseBody
     public PruebaErrorBean manejoErrorGenerico(ObjetoNoEncontradoException e) {
         return AplicacionUtility.generarObjetoRespuestaError(HttpStatus.NOT_FOUND, e, e.getMessage(), false);
+    }
+
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ObjetoRepetidoException.class)
+    @ResponseBody
+    public PruebaErrorBean manejoErrorGenerico(ObjetoRepetidoException e) {
+        return AplicacionUtility.generarObjetoRespuestaError(HttpStatus.BAD_REQUEST, e, e.getMessage(), false);
     }
 }

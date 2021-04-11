@@ -21,16 +21,14 @@ public enum GeneroEnum implements CodigoDescripcionEnumsInterface{
     public static GeneroEnum obtenerGeneroPorCodigo(String codigo) {
         try (Stream<GeneroEnum> codDescStream = Stream.of(GeneroEnum.values())) {
             return codDescStream.filter(theEnum -> theEnum.getCodigo().equals(codigo)).findFirst()
-                    .orElseThrow(() -> new ObjetoNoEncontradoRuntimeException(
-                            String.format("El género con ese código no se encuentra", codigo)));
+                    .orElseThrow(() -> new ObjetoNoEncontradoRuntimeException("Genero no encontrado por código"));
         }
     }
 
     public static GeneroEnum obtenerEnumeradoPorDescripcion(String descripcion) {
         try (Stream<GeneroEnum> codDescStream = Stream.of(GeneroEnum.values())) {
             return codDescStream.filter(theEnum -> theEnum.getDescripcion().equals(descripcion)).findFirst()
-                    .orElseThrow(() -> new ObjetoNoEncontradoRuntimeException(
-                            String.format("El género con esa descripción no se encuentra", descripcion)));
+                    .orElseThrow(() -> new ObjetoNoEncontradoRuntimeException("Genero no encontrado por descripción"));
         }
     }
 }

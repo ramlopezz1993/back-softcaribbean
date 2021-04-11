@@ -19,7 +19,7 @@ public class MysqlConfig {
     Environment environment;
     @Bean
     public DataSource getDataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        var dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName(environment.getProperty("spring.datasource.spring.datasource.driver-class-name"));
         dataSourceBuilder.url(environment.getProperty("spring.datasource.url"));
         dataSourceBuilder.username(environment.getProperty("spring.datasource.username"));
