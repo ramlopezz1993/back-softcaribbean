@@ -6,8 +6,8 @@ import co.com.softcaribbean.pruebasoftcaribbean.model.request.CrearClienteReques
 import co.com.softcaribbean.pruebasoftcaribbean.model.request.EditarClienteRequest;
 import co.com.softcaribbean.pruebasoftcaribbean.model.response.ClienteResponse;
 import co.com.softcaribbean.pruebasoftcaribbean.repository.ClienteRepository;
-import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.AplicacionException;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoNoEncontradoException;
+import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.ObjetoRepetidoException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -31,16 +31,14 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public List<ClienteResponse> obtenerTodosLosClientes() {
         var clientes = clienteRepository.findAll();
-        return clientes.stream().map(cliente -> {
-            return new ClienteResponse(cliente);
-        }).collect(Collectors.toList());
+        return clientes.stream().map(ClienteResponse::new).collect(Collectors.toList());
     }
 
     @Override
-    public void crearCliente(CrearClienteRequest crearClienteRequest) throws AplicacionException, ParseException {
+    public void crearCliente(CrearClienteRequest crearClienteRequest) throws ParseException, ObjetoRepetidoException {
         var optCliente = clienteRepository.findByCusNmcliente(crearClienteRequest.getCusNmcliente());
         if (optCliente.isPresent()) {
-            throw new AplicacionException("La cédula ya se encuentra registrada");
+            throw new ObjetoRepetidoException("La cédula ya se encuentra registrada");
         }
         var cliente = new Cliente(crearClienteRequest);
         arbol.insertar(cliente);

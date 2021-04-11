@@ -3,17 +3,11 @@ package co.com.softcaribbean.pruebasoftcaribbean.model;
 import co.com.softcaribbean.pruebasoftcaribbean.model.request.CrearClienteRequest;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroConverter;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroEnum;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.text.ParseException;
