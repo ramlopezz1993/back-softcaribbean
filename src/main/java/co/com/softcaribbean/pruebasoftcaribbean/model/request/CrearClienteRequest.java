@@ -1,50 +1,64 @@
-package co.com.softcaribbean.pruebasoftcaribbean.model.response;
+package co.com.softcaribbean.pruebasoftcaribbean.model.request;
 
-import co.com.softcaribbean.pruebasoftcaribbean.model.Cliente;
-import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroEnum;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.BeanUtils;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ClienteResponse implements Serializable {
-    private static final long serialVersionUID = -4286811885109424957L;
+public class CrearClienteRequest implements Serializable {
+    private static final long serialVersionUID = -4478768369293781829L;
 
-    Long nmid;
+    @NotBlank
     Integer cusNmcliente;
+    @NotBlank
     String cusDsnombres;
+    @NotBlank
     String cusDsapellidos;
+    @NotBlank
     String cusDsdireccion;
+    @NotBlank
     String cusDscorreo;
+    @NotBlank
     String cusCdtelefono;
     String cusCdtelefonoalter;
     String cusCdcelular;
+    @NotBlank
     Integer cusNmcargo;
+    @NotBlank
     String cusDscargo;
+    @NotBlank
     Integer cusNmciudad;
+    @NotBlank
     String cusDsciudad;
-    Date cusFenacimiento;
+    @NotBlank
+    String cusFenacimiento;
+    @NotBlank
     String cusGenero;
+    @NotBlank
     Integer cusNmcomunidad;
+    @NotBlank
     String cusDscomunidad;
+    @NotBlank
     String cusDsempresalabora;
+    @NotBlank
     Integer cusNmdivision;
+    @NotBlank
     String cusDsdivision;
+    @NotBlank
     Integer cusNmpais;
+    @NotBlank
     String cusDspais;
+    @NotBlank
     String cusHobbies;
-    Date cusFebaja;
-    Date cusFeregistro;
-
-    public ClienteResponse (Cliente cliente) {
-        BeanUtils.copyProperties(cliente,this);
-        this.cusGenero = GeneroEnum.obtenerGeneroPorCodigo(cliente.getCusGenero().getCodigo()).getDescripcion();
-    }
+    @NotBlank
+    Long cusFebaja;
+    @NotBlank
+    Long cusFeregistro;
 }

@@ -46,8 +46,19 @@ public class Arbol {
     public void recorrerArbol(Nodo nodo){
         if(nodo!=null) {
             recorrerArbol(nodo.izquierda);
-            log.info("indice "+nodo.indice+ " izquierda "+nodo.izquierda + " derecha "+nodo.derecha);
+            log.info("indice "+nodo.cliente.getCusCdtelefono()+" izquierda "+nodo.izquierda + " derecha "+nodo.derecha);
             recorrerArbol(nodo.derecha);
+        }
+    }
+
+    public void actualizarNodo(Cliente cliente, Nodo nodo) {
+        if (nodo!=null) {
+            actualizarNodo(cliente,nodo.izquierda);
+            log.info("indice "+nodo.indice+ " izquierda "+nodo.izquierda + " derecha "+nodo.derecha);
+            if (nodo.cliente.getCusNmcliente().equals(cliente.getCusNmcliente())) {
+                nodo.cliente = cliente;
+            }
+            actualizarNodo(cliente,nodo.derecha);
         }
     }
 
@@ -61,7 +72,7 @@ public class Arbol {
         Cliente cliente;
 
         public Nodo(Cliente cliente) {
-            this.indice=cliente.getCus_nmcliente();
+            this.indice=cliente.getCusNmcliente();
             this.padre=null;
             this.derecha=null;
             this.izquierda=null;

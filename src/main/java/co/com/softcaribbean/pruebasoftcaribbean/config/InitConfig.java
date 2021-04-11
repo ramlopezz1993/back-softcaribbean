@@ -25,7 +25,7 @@ public class InitConfig {
         listaDeClientes.stream().forEach(clienteResponse->{
             var cliente = new Cliente();
             BeanUtils.copyProperties(clienteResponse,cliente);
-            cliente.setCus_genero(GeneroEnum.obtenerEnumeradoPorDescripcion(clienteResponse.getCus_genero()));
+            cliente.setCusGenero(GeneroEnum.obtenerEnumeradoPorDescripcion(clienteResponse.getCusGenero()));
             arbol.insertar(cliente);
         });
         arbol.recorrerArbol(arbol.raiz);
