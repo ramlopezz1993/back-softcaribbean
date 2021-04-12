@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "9a03d80f-946b-42a7-8768-d610bb1ec049",
+		"name": "SoftCaribbean",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar cliente arbol y db",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cusDsdireccion\":\"Calle 100 N 21 A 800\",\r\n    \"cusDscorreo\":\"cambio de correo\",\r\n    \"cusCdtelefono\":\"8888888\" ,\r\n    \"cusCdtelefonoalter\":\"5555555\" ,\r\n    \"cusCdcelular\":\"3333333333\" ,\r\n    \"cusNmcargo\":\"120\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/clientes/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inseetar cliente en arbol y db",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cusNmcliente\":37,\r\n    \"cusDsnombres\":\"Alfonso\",\r\n    \"cusDsapellidos\":\"Echeverry Maldonado\",\r\n    \"cusDsdireccion\":\"Carrera 100 Avn nutibara\",\r\n    \"cusDscorreo\":\"ralfondo@mail.com\",\r\n    \"cusCdtelefono\":\"3762947\",\r\n    \"cusCdtelefonoalter\":null,\r\n    \"cusCdcelular\":null,\r\n    \"cusNmcargo\":105,\r\n    \"cusDscargo\":\"Ingenieria\",\r\n    \"cusNmciudad\":7,\r\n    \"cusDsciudad\":\"Pereira\",\r\n    \"cusFenacimiento\":\"31/12/1998\",\r\n    \"cusGenero\":\"M\",\r\n    \"cusNmcomunidad\":10,\r\n    \"cusDscomunidad\":\"Pereirano\",\r\n    \"cusDsempresalabora\":\"Confenalco\",\r\n    \"cusNmdivision\":24,\r\n    \"cusDsdivision\":\"Deportista\",\r\n    \"cusNmpais\":7,\r\n    \"cusDspais\":\"Canada\",\r\n    \"cusHobbies\":\"Cocinar\",\r\n    \"cusFebaja\":1499070300,\r\n    \"cusFeregistro\":1499070300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
