@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 
 import java.beans.FeatureDescriptor;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 import java.util.stream.Stream;
 
@@ -37,5 +39,10 @@ public class AplicacionUtility {
     public static LocalDateTime convertirLongToLocalDateTime(Long fechaLong) {
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(fechaLong),
                 TimeZone.getDefault().toZoneId());
+    }
+
+    public static LocalDate convertirStringToLocalDate(String fechaString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        return LocalDate.parse(fechaString, formatter);
     }
 }

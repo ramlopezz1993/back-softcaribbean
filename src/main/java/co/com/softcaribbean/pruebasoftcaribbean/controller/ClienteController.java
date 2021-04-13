@@ -24,7 +24,7 @@ public class ClienteController {
 
     @GetMapping("/clientes")
     public ResponseEntity<List<ClienteResponse>> obtenerTodosLosClientes() {
-       return new ResponseEntity<>(clienteService.obtenerTodosLosClientes(), HttpStatus.OK);
+       return new ResponseEntity<>(clienteService.obtenerTodosLosClientesDesdeElArbol(), HttpStatus.OK);
     }
 
     @GetMapping("/clientes/{cusNmCliente}")

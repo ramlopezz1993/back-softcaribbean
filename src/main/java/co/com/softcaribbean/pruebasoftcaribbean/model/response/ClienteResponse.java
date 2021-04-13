@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -39,8 +38,6 @@ public class ClienteResponse implements Serializable {
     Integer cusNmpais;
     String cusDspais;
     String cusHobbies;
-    Date cusFebaja;
-    Date cusFeregistro;
 
     public ClienteResponse () {}
 

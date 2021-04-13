@@ -14,4 +14,5 @@ public interface ClienteService {
     void crearCliente(CrearClienteRequest crearClienteRequest) throws ObjetoRepetidoException, FormatoInvalidoException;
     void actualizarArbolYBaseDeDatos(Integer cusNmCliente, EditarClienteRequest editarClienteRequest) throws ObjetoNoEncontradoException;
     ClienteResponse obtenerClientePorCedula(Integer cusNmCliente) throws ObjetoNoEncontradoException;
+    List<ClienteResponse> obtenerTodosLosClientesDesdeElArbol();
 }

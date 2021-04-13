@@ -21,7 +21,6 @@ public class InitConfig {
     @Bean
     public void init () {
         var listaDeClientes = clienteService.obtenerTodosLosClientes();
-        //cargar árbol
         listaDeClientes.stream().forEach(clienteResponse->{
             var cliente = new Cliente();
             BeanUtils.copyProperties(clienteResponse,cliente);

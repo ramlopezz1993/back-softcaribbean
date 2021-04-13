@@ -52,7 +52,7 @@ Para poder ejecutar la aplicación en el ambiente local se debe tener instalado 
 * Java 11 (JDK y JRE).
 
 ##Construido con
-* Java 8 (Java SE-1.8)
+* Java 11 Lts
 * Spring boot
 * Maven
 * Lombok

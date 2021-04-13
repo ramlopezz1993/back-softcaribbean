@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,22 +37,31 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    public List<ClienteResponse> obtenerTodosLosClientesDesdeElArbol() {
+        var listaClientes = arbol.obtenerTodolosNodos(arbol.raiz, new ArrayList<>());
+        return listaClientes.stream().map(ClienteResponse::new).collect(Collectors.toList());
+    }
+
+    @Override
     public void crearCliente(CrearClienteRequest crearClienteRequest) throws ObjetoRepetidoException, FormatoInvalidoException {
-        var optCliente = clienteRepository.findByCusNmcliente(crearClienteRequest.getCusNmcliente());
-        if (optCliente.isPresent()) {
+        var cliente = arbol.obtenerClientePorCedula(crearClienteRequest.getCusNmcliente(), arbol.raiz);
+        if (cliente == null) {
+            cliente = new Cliente(crearClienteRequest);
+            arbol.insertar(cliente);
+            arbol.recorrerArbol(arbol.raiz);
+            clienteRepository.save(cliente);
+        } else {
             throw new ObjetoRepetidoException("La cédula ya se encuentra registrada");
         }
-        var cliente = new Cliente(crearClienteRequest);
-        arbol.insertar(cliente);
-        arbol.recorrerArbol(arbol.raiz);
-        clienteRepository.save(cliente);
     }
 
     @Override
     public void actualizarArbolYBaseDeDatos(Integer cusNmCliente, EditarClienteRequest editarClienteRequest)
             throws ObjetoNoEncontradoException {
-        var cliente = clienteRepository.findByCusNmcliente(cusNmCliente)
-                .orElseThrow(() -> new ObjetoNoEncontradoException("El cliente con ese número de cédula no se encuentra en BD"));
+        //var cliente = clienteRepository.findByCusNmcliente(cusNmCliente)
+          //      .orElseThrow(() -> new ObjetoNoEncontradoException("El cliente con ese número de cédula no se encuentra en BD"));
+       // BeanUtils.copyProperties(editarClienteRequest,cliente, AplicacionUtility.obtenerListapropiedadesNulas(editarClienteRequest));
+        var cliente = arbol.obtenerClientePorCedula(cusNmCliente, arbol.raiz);
         BeanUtils.copyProperties(editarClienteRequest,cliente, AplicacionUtility.obtenerListapropiedadesNulas(editarClienteRequest));
         arbol.actualizarNodo(cliente,arbol.raiz);
         arbol.recorrerArbol(arbol.raiz);
@@ -60,7 +70,11 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public ClienteResponse obtenerClientePorCedula(Integer cusNmCliente) throws ObjetoNoEncontradoException {
-        return new ClienteResponse(arbol.obtenerClientePorCedula(cusNmCliente, arbol.raiz));
+        var cliente = arbol.obtenerClientePorCedula(cusNmCliente, arbol.raiz);
+        if (cliente !=null) {
+            return new ClienteResponse(cliente);
+        }
+        throw new ObjetoNoEncontradoException("El cliente con ese número de cédula no se encuentra en el árbol");
     }
 }
 
