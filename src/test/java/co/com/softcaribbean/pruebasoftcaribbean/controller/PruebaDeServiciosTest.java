@@ -30,13 +30,13 @@ class PruebaDeServiciosTest {
 
 
     //-------------------actualizar datos desde el árbol
-   /* @Test
+   @Test
     void actualizarArbolYBaseDeDatos () {
         var cliente = crearClientePrueba();
+        var clienteRequest = crearObjetoEditar();
         Mockito.when(arbol.obtenerClientePorCedula(cliente.getCusNmcliente(),arbol.raiz)).thenReturn(cliente);
-        Mockito.when(arbol.actualizarNodo(cliente.getCusNmcliente())).thenReturn(clienteOptional);
         Assertions.assertDoesNotThrow(()->clienteService.actualizarArbolYBaseDeDatos(cliente.getCusNmcliente(),clienteRequest));
-    }*/
+    }
 
     //--------------------obtener todos los clientes
     @Test
@@ -91,7 +91,7 @@ class PruebaDeServiciosTest {
     private Cliente crearClientePrueba() {
         var cliente = new Cliente();
         cliente.setNmid(11L);
-        cliente.setCusNmcliente(38);
+        cliente.setCusNmcliente(37);
         cliente.setCusDsnombres("Alfonso");
         cliente.setCusDsapellidos("Echeverry Maldonado");
         cliente.setCusDsdireccion("Carrera 100 Avn nutibara");
@@ -120,7 +120,7 @@ class PruebaDeServiciosTest {
 
     private CrearClienteRequest crearClienteInsercion() {
         var cliente = new CrearClienteRequest();
-        cliente.setCusNmcliente(37);
+        cliente.setCusNmcliente(38);
         cliente.setCusDsnombres("Ricardo");
         cliente.setCusDsapellidos("Martinez Lopez");
         cliente.setCusDsdireccion("Calle 23 n 50 b 45");

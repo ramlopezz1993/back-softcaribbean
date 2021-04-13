@@ -60,9 +60,6 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void actualizarArbolYBaseDeDatos(Integer cusNmCliente, EditarClienteRequest editarClienteRequest)
             throws ObjetoNoEncontradoException {
-        //var cliente = clienteRepository.findByCusNmcliente(cusNmCliente)
-          //      .orElseThrow(() -> new ObjetoNoEncontradoException("El cliente con ese número de cédula no se encuentra en BD"));
-       // BeanUtils.copyProperties(editarClienteRequest,cliente, AplicacionUtility.obtenerListapropiedadesNulas(editarClienteRequest));
         var cliente = arbol.obtenerClientePorCedula(cusNmCliente, arbol.raiz);
         BeanUtils.copyProperties(editarClienteRequest,cliente, AplicacionUtility.obtenerListapropiedadesNulas(editarClienteRequest));
         arbol.actualizarNodo(cliente,arbol.raiz);
