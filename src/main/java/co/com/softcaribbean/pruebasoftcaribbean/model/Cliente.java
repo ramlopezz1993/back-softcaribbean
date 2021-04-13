@@ -1,10 +1,8 @@
 package co.com.softcaribbean.pruebasoftcaribbean.model;
 
 import co.com.softcaribbean.pruebasoftcaribbean.model.request.CrearClienteRequest;
-import co.com.softcaribbean.pruebasoftcaribbean.utilidades.common.AplicacionUtility;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroConverter;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroEnum;
-import co.com.softcaribbean.pruebasoftcaribbean.utilidades.exceptions.FormatoInvalidoException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,10 +10,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -66,7 +62,7 @@ public class Cliente {
     String cusDsciudad;
 
     @Column(name = "cus_fenacimiento")
-    Date cusFenacimiento;
+    LocalDate cusFenacimiento;
 
     @Column(name = "cus_genero")
     @Convert(converter = GeneroConverter.class)
@@ -104,16 +100,11 @@ public class Cliente {
 
     public Cliente(){}
 
-    public Cliente(CrearClienteRequest crearClienteRequest) throws FormatoInvalidoException {
-        try {
+    public Cliente(CrearClienteRequest crearClienteRequest) {
             BeanUtils.copyProperties(crearClienteRequest,this);
             this.setCusGenero(GeneroEnum.obtenerGeneroPorCodigo(crearClienteRequest.getCusGenero()));
-            Date fechaNacimiento = new SimpleDateFormat("dd/MM/yyyy").parse(crearClienteRequest.getCusFenacimiento());
-            this.setCusFenacimiento(fechaNacimiento);
-            this.setCusFebaja(AplicacionUtility.convertirLongToLocalDateTime(crearClienteRequest.getCusFebaja()));
+            this.setCusFenacimiento(LocalDate.now());
+            this.setCusFebaja(LocalDateTime.now());
             this.setCusFeregistro(LocalDateTime.now());
-        } catch (ParseException e) {
-            throw new FormatoInvalidoException("El formato de la fecha no es el correcto, cambiar por dd/MM/yyyy");
-        }
     }
 }

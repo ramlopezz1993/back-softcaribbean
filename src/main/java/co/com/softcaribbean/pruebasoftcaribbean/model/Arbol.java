@@ -7,6 +7,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Slf4j
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -49,6 +51,15 @@ public class Arbol {
             log.info("indice "+nodo.indice);
             recorrerArbol(nodo.derecha);
         }
+    }
+
+    public List<Cliente> obtenerTodolosNodos(Nodo nodo, List<Cliente> lista){
+        if(nodo!=null) {
+            obtenerTodolosNodos(nodo.izquierda, lista);
+            lista.add(nodo.cliente);
+            obtenerTodolosNodos(nodo.derecha, lista);
+        }
+        return lista;
     }
 
     public void actualizarNodo(Cliente cliente, Nodo nodo) {

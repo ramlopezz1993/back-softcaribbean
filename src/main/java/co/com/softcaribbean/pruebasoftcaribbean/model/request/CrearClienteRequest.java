@@ -37,8 +37,6 @@ public class CrearClienteRequest implements Serializable {
     @NotBlank
     String cusDsciudad;
     @NotBlank
-    String cusFenacimiento;
-    @NotBlank
     String cusGenero;
     @NotBlank
     Integer cusNmcomunidad;
@@ -56,8 +54,4 @@ public class CrearClienteRequest implements Serializable {
     String cusDspais;
     @NotBlank
     String cusHobbies;
-    @NotBlank
-    Long cusFebaja;
-    @NotBlank
-    Long cusFeregistro;
 }

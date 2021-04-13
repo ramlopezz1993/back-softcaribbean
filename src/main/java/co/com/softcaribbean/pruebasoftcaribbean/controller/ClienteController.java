@@ -18,13 +18,14 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin
 public class ClienteController {
 
     ClienteService clienteService;
 
     @GetMapping("/clientes")
     public ResponseEntity<List<ClienteResponse>> obtenerTodosLosClientes() {
-       return new ResponseEntity<>(clienteService.obtenerTodosLosClientes(), HttpStatus.OK);
+       return new ResponseEntity<>(clienteService.obtenerTodosLosClientesDesdeElArbol(), HttpStatus.OK);
     }
 
     @GetMapping("/clientes/{cusNmCliente}")
