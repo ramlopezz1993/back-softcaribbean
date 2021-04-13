@@ -37,10 +37,12 @@ create table tcus_clientes
  unique (cus_nmcliente)
 );
 
+* Insertar usuario para realizar las pruebas automatizadas.
+INSERT INTO db_softcaribbean.tcus_clientes (nmid, cus_nmcliente, cus_dsnombres, cus_dsapellidos, cus_dsdireccion, cus_dscorreo, cus_cdtelefono, cus_cdtelefonoalter, cus_cdcelular, cus_nmcargo, cus_dscargo, cus_nmciudad, cus_dsciudad, cus_fenacimiento, cus_genero, cus_nmcomunidad, cus_dscomunidad, cus_dsempresalabora, cus_nmdivision, cus_dsdivision, cus_nmpais, cus_dspais, cus_hobbies, cus_feregistro, cus_febaja) VALUES (11, 37, 'Alfonso', 'Echeverry Maldonado', 'Calle nueva', 'correoNuevo@mail.com', '0000000', '1111111', '2222222222', 105, 'Ingenieria', 7, 'Pereira', '2021-04-13', 'M', 10, 'Pereirano', 'Confenalco', 24, 'Deportista', 7, 'Canada', 'Cocinar', '2021-04-13 03:49:31', '2021-04-13 03:49:31');
+
 ##Notas
 
 * el árbol se maneja con el campo "cus_nmcliente" como indice para recorrerlo y hacer operaciones el cual lo trato como si fuera la cédula del cliente.
-* en el archivo postman dejo las peticiones codiguradas.
 
 ##Prerrequisitos
 
