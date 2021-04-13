@@ -130,10 +130,8 @@ class PruebaDeServiciosTest {
         cliente.setCusCdcelular(null);
         cliente.setCusNmcargo(105);
         cliente.setCusDscargo("Ingenieria");
-        cliente.setCusFenacimiento("");
         cliente.setCusNmciudad(8);
         cliente.setCusDsciudad("Cauca");
-        cliente.setCusFenacimiento("20/02/1993");
         cliente.setCusGenero("M");
         cliente.setCusNmcomunidad(11);
         cliente.setCusDscomunidad("Caucano");
@@ -143,8 +141,6 @@ class PruebaDeServiciosTest {
         cliente.setCusNmpais(1);
         cliente.setCusDspais("Colombia");
         cliente.setCusHobbies("Deporte");
-        cliente.setCusFebaja(1618266749L);
-        cliente.setCusFeregistro(1618266764L);
         return cliente;
     }
 

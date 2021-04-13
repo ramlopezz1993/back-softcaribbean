@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,6 +67,9 @@ public class ClienteServiceImpl implements ClienteService {
         BeanUtils.copyProperties(editarClienteRequest,cliente, AplicacionUtility.obtenerListapropiedadesNulas(editarClienteRequest));
         arbol.actualizarNodo(cliente,arbol.raiz);
         arbol.recorrerArbol(arbol.raiz);
+        cliente.setCusFenacimiento(LocalDate.now());
+        cliente.setCusFebaja(LocalDateTime.now());
+        cliente.setCusFeregistro(LocalDateTime.now());
         clienteRepository.save(cliente);
     }
 

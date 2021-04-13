@@ -3,7 +3,6 @@ package co.com.softcaribbean.pruebasoftcaribbean.model;
 import co.com.softcaribbean.pruebasoftcaribbean.model.request.CrearClienteRequest;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroConverter;
 import co.com.softcaribbean.pruebasoftcaribbean.utilidades.GeneroEnum;
-import co.com.softcaribbean.pruebasoftcaribbean.utilidades.common.AplicacionUtility;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -104,8 +103,8 @@ public class Cliente {
     public Cliente(CrearClienteRequest crearClienteRequest) {
             BeanUtils.copyProperties(crearClienteRequest,this);
             this.setCusGenero(GeneroEnum.obtenerGeneroPorCodigo(crearClienteRequest.getCusGenero()));
-            this.setCusFenacimiento(AplicacionUtility.convertirStringToLocalDate(crearClienteRequest.getCusFenacimiento()));
-            this.setCusFebaja(AplicacionUtility.convertirLongToLocalDateTime(crearClienteRequest.getCusFebaja()));
+            this.setCusFenacimiento(LocalDate.now());
+            this.setCusFebaja(LocalDateTime.now());
             this.setCusFeregistro(LocalDateTime.now());
     }
 }
